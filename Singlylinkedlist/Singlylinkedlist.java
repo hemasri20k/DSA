@@ -47,7 +47,32 @@ class List
 
 
     }
-    
+    public void deleteEnd(){
+Node c = head;
+while(c.next.next != null ){
+    c = c.next;
+}
+c.next = null ;
+    }
+
+    public void deleteFirst(){
+        Node c = head;
+        head  = c.next;
+        c.next = null;
+    }
+    public void deletePos(int p )
+    {
+        Node c = head; 
+        int cr = 1;
+        while(cr < p-1){
+            c = c.next;
+            cr++;
+        }
+        Node nxt = c.next.next;
+        c.next = nxt;
+
+    }
+
     public void display()
     {
         Node cur=head;
@@ -76,6 +101,9 @@ System.out.println();
         l.display();
         l.insertAtPos(9,4);
         l.display();
+        l.deletePos(3);
+        l.display();
+
         
         
     }
