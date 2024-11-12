@@ -51,12 +51,6 @@ public class Dlist {
     public void insertAtPos(int data, int p)
     {
         Node newNode=new Node(data);
-        if(head==null)
-        {
-            System.out.println("Empty lisy");
-        }
-        else if(head.next==null)
-        {
             Node c=head;
             int count=1;
 
@@ -68,30 +62,9 @@ public class Dlist {
             Node n=c.next;
             newNode.prev=c;
             c.next=newNode;
-        }
-        
-        else{
-            Node c=head;
-            int count=1;
-
-            while(count<p-1)
-            {
-                c=c.next;
-                count++;
-            }
-            if(c.next==null)
-            {
-                insertAtEnd(data);
-            }
-            else{
-                Node n=c.next;
-            newNode.prev=c;
-            c.next=newNode;
             newNode.next=n;
             n.prev=newNode;
-            }
-            
-        }
+        
     }
     public void display()
     {
@@ -103,6 +76,38 @@ public class Dlist {
             c=c.next;
         }
 
+    }
+    public void deleteFirst()
+    {
+        Node c=head.next;
+        c.prev=null;
+        head.next=null;
+        head=c;
+        
+    }
+    public void deleteEnd()
+    {
+        Node c=head;
+        while(c.next.next!=null)
+        {
+            c=c.next;
+        }
+        c.next.prev=null;
+        c.next=null;
+        
+    }
+    public void deletePos(int p)
+    {
+        Node c=head;
+        int count=1;
+        while(count<p-1)
+        {
+            c=c.next;
+            count++;
+        }
+        Node n=c.next.next;
+        c.next=n;
+        n.prev=c;
     }
     public static void main(String[] args) {
         Scanner s=new Scanner(System.in);
@@ -136,6 +141,8 @@ public class Dlist {
         
         l.display();
         System.out.println("\n Number of elements after inserting a new element=" + num + "\n");
+        l.deletePos(p);
+        l.display();
         
     }
     
