@@ -1,43 +1,45 @@
 package Stack;
-
-import java.util.Scanner;
-
 public class StackArray {
-    int top=-1;
     
-    void push(int data, int a[])
-    {
-        
-        top++;
-        a[top]=data;
-        
-    }
-    void pop(int[] a)
-    {
-        System.out.println("\nItem popped:" + a[top]);
-        top--;
-        
-    }
-    
-    
-    public static void main(String[] args) {
-        Scanner s=new Scanner(System.in);
-        StackArray sa=new StackArray();
-        System.out.print("Enter the size of array:");
-        int n=s.nextInt();
-        int a[]=new int[n];
-        for(int i=0;i<n;i++)
-        {
-            a[i]=s.nextInt();
-            sa.push(a[i],a);
-        }
-        System.out.print("Items in the stack are:");
-        for(int i=0;i<n;i++)
-        {
-            System.out.print(a[i] + " ");
-        }        
-        
-        sa.pop(a);
+int top=-1;
+static   int[] a=new int[3];
+void push(int data){
 
+    if(top == a.length-1)
+    {
+        System.out.println("Stack Full ");
+        return;
+    }
+    top++;
+    a[top]=data;
+}
+void pop(){
+if(top<0){
+    System.out.println("Empty Stack");
+    return;
+}
+int res=a[top];
+
+top--;
+System.out.println("Popped  : " +res);
+}
+void display(){
+    for(int t =0 ;t< top+1;t++){
+        System.out.print(a[t]+ " ");
+    }
+    System.out.println();
+}
+    public static void main(String[] args) {
+        StackArray l=new StackArray();
+        l.push(5);
+        l.push(7);
+        l.push(3);
+        l.push(4);
+        l.display();
+        l.pop();
+        l.display();
+        l.pop();
+        l.display();
+        
     }
 }
