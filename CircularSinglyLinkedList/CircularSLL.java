@@ -41,13 +41,37 @@ public class CircularSLL {
         Node newNode=new Node(data);
         if(last==null)
         {
-            newNode.next=newNode;
+            last=newNode;
+            
+        }
+       else{
+            newNode.next=last.next;
+       }
+       last.next=newNode;
+    }
+    public void insertAtEnd(int data){
+        Node newNode=new Node(data);
+        if(last==null){
+            last=newNode;
+            last.next=last;
+        }
+        else{
+            newNode.next=last.next;
+            last.next=newNode;
             last=newNode;
         }
         
-        newNode.next=last.next;
-        last.next=newNode;
-
+    }
+    public void delBegin(){
+        Node temp=last.next;
+        if(last.next==last){
+            last=null;
+        }
+        else{
+            last.next=temp.next;
+            
+        }
+        temp.next=null;
     }
     public static void main(String[] args) {
         CircularSLL cl=new CircularSLL();
@@ -57,13 +81,16 @@ public class CircularSLL {
         for(int i=0;i<n;i++)
         {
             a[i]=s.nextInt();
-            cl.insertBegin(a[i]);
+            cl.insertAtEnd(a[i]);
         }
         
 
         cl.display();
         System.out.println();
-        cl.insertBegin(10);
+        cl.insertAtEnd(10);
+        cl.display();
+        System.out.println();
+        cl.delBegin();
         cl.display();
         
         
