@@ -7,22 +7,21 @@ public class ArrayExample {
             System.out.print(arr[i] + " ");
         }
     }
-    public static int[] removeEven(int[] arr){
-        int oddCount=0;
+    /*public int[] resize(int[] arr, int capacity){
+        int[] temp=new int[capacity];
         for(int i=0;i<arr.length;i++){
-            if(arr[i]%2!=0){
-                oddCount++;
-            }
+            temp[i]=arr[i];
         }
-        int[] res=new int[oddCount];
-        int idx=0;
+        
+        return temp;
+    }*/
+    public int findMissingNum(int[] arr){
+        int n=arr.length+1;
+        int sum=n*(n+1)/2;
         for(int i=0;i<arr.length;i++){
-            if(arr[i]%2!=0){
-                res[idx]=arr[i];
-                idx++;
-            }
+            sum=sum-arr[i];
         }
-        return res;
+        return sum;
     }
     /*public void arrayDemo(){
         
@@ -40,11 +39,15 @@ public class ArrayExample {
     public static void main(String[] args) {
         ArrayExample a=new ArrayExample();
         
-        int[] arr={1,2,3,4,5};
-        a.printArray(arr);
-        System.out.println();
-        int[] res=a.removeEven(arr);
-        a.printArray(res);
+        int[] arr={1,5,4,6};
+        /*int[] original=new int[]{1,2,3,4,5};
+        
+        System.out.println("The size of original array is" + original.length);
+        original=a.resize(original,original.length*2);
+        System.out.println("The size of array after resizing: " + original.length);*/
+        System.out.println("The missing number is:" + a.findMissingNum(arr));
+
+       
 
        
     }
